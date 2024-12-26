@@ -23,7 +23,6 @@ IS
             RETURN NULL;
         END IF;
         
-        --* 找到最後一個斜杠或反斜杠的位置
         DECLARE
             V_LAST_SLASH NUMBER(4,0) := GET_LAST_SLASH_POSITION(P_FILE_FULL_NAME);
         BEGIN
@@ -43,7 +42,6 @@ IS
             RETURN NULL;
         END IF;
         
-        --* 找到最後一個斜杠或反斜杠的位置
         DECLARE
             V_LAST_SLASH NUMBER(4,0) := GET_LAST_SLASH_POSITION(P_FILE_FULL_NAME);
         BEGIN
@@ -63,7 +61,6 @@ IS
         END IF;
         
         DECLARE
-            --* 使用 GET_FILE_NAME 函數提取文件名
             V_FILE_NAME VARCHAR2(4000) := GET_FILE_NAME(P_FILE_FULL_NAME);
         BEGIN
             IF V_FILE_NAME IS NULL THEN
@@ -71,11 +68,10 @@ IS
             END IF;
 
             DECLARE 
-                --* 找到最後一個點的位置
                 V_DOT_POSITION NUMBER(4,0) := INSTR(V_FILE_NAME, '.', -1);
             BEGIN
                 IF V_DOT_POSITION = 0 THEN
-                    RETURN V_FILE_NAME; --* 沒有擴展名
+                    RETURN V_FILE_NAME; 
                 END IF;
                 RETURN SUBSTR(V_FILE_NAME, 1, V_DOT_POSITION - 1);
             END;
